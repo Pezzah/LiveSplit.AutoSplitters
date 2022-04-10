@@ -43,14 +43,15 @@ startup
     settings.SetToolTip("resetOnRestart", "Will reset the timer if a level is restarted (good for IL runs)");
 }
 
+onStart
+{
+    vars.lastKnownTicks = 0;
+    vars.lastKnownTicksOld = 0;
+    vars.storedGT = 0;
+}
+
 update
 {
-    if (vars.prevPhase == TimerPhase.NotRunning && timer.CurrentPhase == TimerPhase.Running) { //New game
-        vars.lastKnownTicks = 0;
-        vars.lastKnownTicksOld = 0;
-        vars.storedGT = 0;
-    }
-
     if (current.speed == 7) {
         vars.speedDivider = 1.0 / 17.0;
     } else if (current.speed == 6) {
