@@ -74,13 +74,10 @@ update
 
 start
 {
-    if (settings["startAnyLevel"])
-    {
+    if (settings["startAnyLevel"]) {
         return old.controlStatus == 3 && current.controlStatus == 0;
-    }
-    else
-    {
-        return current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA");
+    } else {
+        return old.controlStatus != 3 && current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA");
     }
 }
 
