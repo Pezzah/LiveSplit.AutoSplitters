@@ -27,7 +27,6 @@ state("ClientG")
 
 init
 {
-    vars.prevPhase = null;
     vars.speedDivider = 1.0;
     vars.lastKnownTicks = 0;
     vars.lastKnownTicksOld = 0;
@@ -71,8 +70,6 @@ update
     if (vars.lastKnownTicks < vars.lastKnownTicksOld) {
         vars.storedGT = vars.storedGT + (vars.lastKnownTicksOld - vars.lastKnownTicks) / vars.speedDivider;
     }
-
-    vars.prevPhase = timer.CurrentPhase;
 }
 
 start
@@ -83,7 +80,7 @@ start
     }
     else
     {
-        return old.controlStatus == 2 && current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA");
+        return current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA");
     }
 }
 
