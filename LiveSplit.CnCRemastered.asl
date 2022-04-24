@@ -75,9 +75,12 @@ update
 start
 {
     if (settings["startAnyLevel"]) {
+	// When the loading screen ends and the game starts
         return old.controlStatus == 3 && current.controlStatus == 0;
     } else {
-        return old.controlStatus != 3 && current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA");
+	// When the loading screen starts for level 1
+        return (old.controlStatus != 3 && current.controlStatus == 3 && current.currentMap.Contains("CAMPAIGN_1_MA"))
+		|| (current.controlStatus == 3 && !old.currentMap.Contains("CAMPAIGN_1_MA") && current.currentMap.Contains("CAMPAIGN_1_MA"));
     }
 }
 
